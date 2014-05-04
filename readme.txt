@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-MiwoFTP is a smart, fast and lightweight file manager plugin.
+MiwoFTP is a smart, fast and lightweight file manager plugin that operates from WordPress back-end.
 
 == Description ==
 
