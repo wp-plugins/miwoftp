@@ -4,7 +4,7 @@ Plugin Name: MiwoFTP
 Plugin URI: http://miwisoft.com
 Description: MiwoFTP is a smart, fast and lightweight file manager component. It operates from WordPress back-end so you don't have to use any FTP program anymore.
 Author: Miwisoft LLC
-Version: 1.0.0
+Version: 1.0.1
 Author URI: http://miwisoft.com
 Plugin URI: http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager
 */
@@ -14,16 +14,11 @@ defined('ABSPATH') or die('MIWI');
 define('MPATH_MIWOFTP_QX', plugin_dir_path(__FILE__).'admin/quixplorer');
 define('MURL_MIWOFTP', plugins_url('', __FILE__));
 
+add_action('init', 'check_init_action');
 add_action('admin_menu', 'miwoftp_menu');
-add_action('admin_enqueue_scripts', 'miwoftp_scripts');
 
 function miwoftp_menu() {
-    add_menu_page('MiwoFTP', 'MiwoFTP', 'manage_options', 'miwoftp', 'miwoftp_echo', MURL_MIWOFTP.'/admin/assets/images/icon-16-miwoftp.png', 39);
-}
-
-function miwoftp_scripts() {
-    wp_enqueue_style(MURL_MIWOFTP.'/assets/css/miwoftp.css', MURL_MIWOFTP.'/assets/css/miwoftp.css');
-    wp_enqueue_script(MURL_MIWOFTP.'/assets/assets/js/iframeresizer.js', MURL_MIWOFTP.'/assets/js/iframeresizer.js');
+    add_menu_page('MiwoFTP', 'MiwoFTP', 'manage_options', 'miwoftp', 'miwoftp_echo', MURL_MIWOFTP.'/admin/assets/images/icon-16-miwoftp.png', '33.0099');
 }
 
 function miwoftp_echo() {
@@ -45,15 +40,11 @@ function miwoftp_echo() {
         $output = str_replace($key, $value, $output);
     }
 
-
     echo $output;
 
     echo '<div style="margin: 10px; text-align: center;"><a href="http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager" target="_blank">MiwoFTP | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';
     echo '</div>';
 }
-
-
-add_action('init', 'check_init_action');
 
 function check_init_action(){
     if(empty($_GET['action']) or (isset($_GET['action']) and $_GET['action'] != 'download') ){

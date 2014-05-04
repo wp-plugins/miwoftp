@@ -35,5 +35,9 @@ You can download and install MiwoFTP using the built in WordPress plugin install
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* Menu not showing up.
+* Fixed CSS/JS warnings.
+
+= 1.0.0 =
 * Initial release.
