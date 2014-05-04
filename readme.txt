@@ -33,7 +33,7 @@ MiwoFTP is a smart, fast and lightweight file manager plugin. It operates from W
 
 == Installation ==
 
-We do not collect information about you or your server. All of the code is provided Open Source.
+You can download and install MiwoFTP using the built in WordPress plugin installer. We do not collect information about you or your server.
 
 == Changelog ==
 
