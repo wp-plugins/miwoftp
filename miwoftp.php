@@ -42,7 +42,7 @@ function miwoftp_echo() {
 
     echo $output;
 
-    echo '<div style="margin: 10px; text-align: center;"><a href="http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager" target="_blank">MiwoFTP | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';
+    echo '<div style="margin: 10px; text-align: center;"><a style="text-decoration: none;" href="http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager" target="_blank">MiwoFTP | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';
     echo '</div>';
 }
 

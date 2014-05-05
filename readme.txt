@@ -14,6 +14,8 @@ MiwoFTP is a smart, fast and lightweight file manager plugin that operates from 
 
 MiwoFTP is a smart, fast and lightweight file manager plugin. It operates from WordPress back-end so you don't have to use any FTP program anymore. You can browse folders, create, edit, copy, move, delete, search, upload and download files and much more.
 
+= Features =
+
 * Browsing files and folders
 * Showing names, file sizes, file types and permissions
 * Copying, moving and deleting files
@@ -23,6 +25,14 @@ MiwoFTP is a smart, fast and lightweight file manager plugin. It operates from W
 * Changing files and folders permissions (chmod)
 * Zip / UnZip files and folders
 
+= Documentation =
+
+Documentation will be maintained on the [Miwisoft.com site.](http://miwisoft.com/support).
+
+= Support =
+
+Use the WordPress.org forums for community support. We cannot offer efficient support directly for free.
+
 == Screenshots ==
 
 1. **Browser** - File/folder browser.
@@ -31,7 +41,17 @@ MiwoFTP is a smart, fast and lightweight file manager plugin. It operates from W
 
 == Installation ==
 
-You can download and install MiwoFTP using the built in WordPress plugin installer. We do not collect information about you or your server.
+= Automatic installation =
+
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
+
+In the search field type "MiwoFTP" and click Search Plugins. Once you've found the plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by clicking "Install Now".
+
+= Manual installation =
+
+The manual installation method involves downloading the plugin and uploading it to your site. To do a manual install, log in to your WordPress admin panel, navigate to the Plugins menu, click Add New, click Upload (top links) and finally select the downloaded file.
+
+We do not collect information about you or your server.
 
 == Changelog ==
 
