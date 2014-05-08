@@ -1,4 +1,4 @@
-=== MiwoFTP - WordPress File Manager ===
+=== MiwoFTP - File & Folder Manager ===
 Contributors: miwisoft
 Tags: ftp, file browser, file manager, folder, directory, file, browse, upload, edit, admin
 Donate link: http://miwisoft.com
