@@ -35,9 +35,7 @@ Use the WordPress.org forums for community support. We cannot offer efficient su
 
 == Screenshots ==
 
-1. **Browser** - File/folder browser.
-2. **Edit** - File edit.
-3. **Upload** - File upload.
+Screenshots are located in the following page: [http://miwisoft.com/miwoftp](http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager#screenshots)
 
 == Installation ==
 
@@ -55,9 +53,4 @@ We do not collect information about you or your server.
 
 == Changelog ==
 
-= 1.0.1 =
-* Menu not showing up
-* Fixed CSS/JS warnings
-
-= 1.0.0 =
-* Initial release
+Changelog is available in the following page: [http://miwisoft.com/miwoftp](http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager#changelog)
