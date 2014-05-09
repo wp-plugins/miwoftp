@@ -1,5 +1,5 @@
 === MiwoFTP - File & Folder Manager ===
-Contributors: miwisoft
+Contributors: miwisoft, gilbertlici
 Tags: ftp, file browser, file manager, folder, directory, file, browse, upload, edit, admin
 Donate link: http://miwisoft.com
 Requires at least: 3.5
