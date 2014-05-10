@@ -35,9 +35,9 @@ Use the WordPress.org forums for community support. We cannot offer efficient su
 
 == Screenshots ==
 
-More screenshots are located in the following page: [http://miwisoft.com/miwoftp](http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager#screenshots)
-
 1. Admin Panel
+
+More screenshots are located in the following page: [http://miwisoft.com/miwoftp](http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager#screenshots)
 
 == Installation ==
 
