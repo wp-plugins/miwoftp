@@ -388,7 +388,7 @@ function _print_edit_buttons ($dir)
 	_print_link("copy", permissions_grant_all($dir, NULL, array("create", "read")), $dir, NULL);
 	_print_link("move", permissions_grant($dir, NULL, "change"), $dir, NULL);
 	_print_link("delete", permissions_grant($dir, NULL, "delete"), $dir, NULL);
-	_print_link("upload", permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"), $dir, NULL);
+	_print_link("upload", permissions_grant($dir, NULL, "create")/* && get_cfg_var("file_uploads")*/, $dir, NULL);
 	_print_link("archive", 
 		permissions_grant_all($dir, NULL, array("create", "read"))
 			&& ($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]),
