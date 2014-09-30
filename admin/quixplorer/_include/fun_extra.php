@@ -13,7 +13,7 @@ defined('ABSPATH') or die('MIWI');
 // THESE ARE NUMEROUS HELPER FUNCTIONS FOR THE OTHER INCLUDE FILES
 //------------------------------------------------------------------------------
 function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NULL) {
-						// make link to next page
+	// make link to next page
 	if($_action=="" || $_action==NULL) $_action="list";
 	if($_dir=="") $_dir=NULL;
 	if($_item=="") $_item=NULL;
@@ -22,6 +22,12 @@ function make_link($_action,$_dir,$_item=NULL,$_order=NULL,$_srt=NULL,$_lang=NUL
 	if($_lang==NULL) $_lang=(isset($GLOBALS["lang"])?$GLOBALS["lang"]:NULL);
 	
 	$link=$GLOBALS["script_name"]."?page=miwoftp&option=com_miwoftp&action=".$_action;
+	
+	/*Detect if the site has SSL enabled and switch all links to https --- Added by Shane Gadsby <shane.gadsby@usq.edu.au> || https://github.com/schme16*/	
+	if (force_ssl_admin()) {
+		$link = str_replace("http://", "https://", $link, $temp = 1); 
+	}
+	
 	if($_dir!=NULL) $link.="&dir=".urlencode($_dir);
 	if($_item!=NULL) $link.="&item=".urlencode($_item);
 	if($_order!=NULL) $link.="&order=".$_order;
