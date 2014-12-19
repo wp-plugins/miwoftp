@@ -3,7 +3,7 @@ Contributors: miwisoft, gilbertlici
 Tags: ftp, file browser, file manager, folder, directory, file, browse, upload, edit, admin
 Donate link: http://miwisoft.com
 Requires at least: 3.5
-Tested up to: 4.0.1
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
