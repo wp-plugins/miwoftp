@@ -1,14 +1,4 @@
 <?php
-/*
-* @package		MiwoFTP
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
-*
-*/
-
-// no direct access
-defined('ABSPATH') or die('MIWI');
-
 /*------------------------------------------------------------------------------
      The contents of this file are subject to the Mozilla Public License
      Version 1.1 (the "License"); you may not use this file except in
@@ -137,7 +127,56 @@ class ZipFile {
 		// save to central directory
 		$this->ctrl_dir[] = $cdrec;
 	}
-	
+//------------------------------------------------------------------------------
+// Add empty folder
+	function addDirectory($name, $time=0)
+	{
+		$name  = str_replace('\\', '/', $name);
+		$dtime = dechex($this->unix2dos_time($time));
+		$hexdtime = '\x'.$dtime[6].$dtime[7].'\x'.$dtime[4].$dtime[5].'\x'.$dtime[2].$dtime[3].'\x'.$dtime[0].$dtime[1];
+		eval('$hexdtime = "' . $hexdtime . '";');
+		
+		$zipEntry  = "\x50\x4b\x03\x04";
+		$zipEntry .= "\x0a\x00";                // Version needed to extract
+		$zipEntry .= "\x00\x00";                // General Purpose bit flags, 0 for compression type 0
+		$zipEntry .= "\x00\x00";                // Compression type 0 = stored
+		$zipEntry .= $hexdtime;
+		$zipEntry .= "\x00\x00\x00\x00";        // compression CRC32
+		$zipEntry .= "\x00\x00\x00\x00";        // compressedLength
+		$zipEntry .= "\x00\x00\x00\x00";        // uncompressedLength
+		$zipEntry .= pack("v", strlen($name) ); // Filename length
+		$zipEntry .= "\x00\x00";                // Extra field length
+		$zipEntry .= $name;                     // FileName . Extra field
+		
+		// add this entry to array
+		$this->datasec[] = $zipEntry;
+		$new_offset = $this->old_offset + strlen($zipEntry);
+		
+		$cdrec  = "\x50\x4b\x01\x02";
+		$cdrec .= "\x00\x00";                    // Made By Version
+		$cdrec .= "\x0a\x00";                    // Version Needed to extract
+		$cdrec .= "\x00\x00";                    // General Purpose bit flags
+		$cdrec .= "\x00\x00";                    // Compression type 0 = stored
+		$cdrec .= $hexdtime;
+		$cdrec .= "\x00\x00\x00\x00";            // compression CRC32
+		$cdrec .= "\x00\x00\x00\x00";            // compressedLength
+		$cdrec .= "\x00\x00\x00\x00";            // uncompressedLength
+		$cdrec .= pack("v", strlen($name) );     // Filename length
+		$cdrec .= "\x00\x00";                    // Extra field length
+		$cdrec .= pack("v", 0 );                 // File comment length
+		$cdrec .= "\x00\x00";                    // Disk number start
+		$cdrec .= "\x00\x00";                    // internal file attributes
+		$cdrec .= pack("V", 16 );                // External file attributes
+		$cdrec .= pack("V", $this->old_offset ); // Relative offset of local header
+		$cdrec .= $name;                         // FileName . Extra field
+		
+		// save to central directory
+		$this->ctrl_dir[] = $cdrec;
+		$this->old_offset = $new_offset;
+		
+		return true;
+	}
+//------------------------------------------------------------------------------
 	function contents() {
 		$data = implode('', $this->datasec);
 		$ctrldir = implode('', $this->ctrl_dir);
@@ -161,6 +200,8 @@ class ZipFile {
 			return true;
 		} elseif(@is_dir($item)) {
 			if(($handle=opendir($item))===false) return false;
+			if( !$this->addDirectory($name) )
+				return false;
 			while(($file=readdir($handle))!==false) {
 				if(($file==".." || $file==".")) continue;
 				if(!$this->add($dir,$name."/".$file)) return false;
