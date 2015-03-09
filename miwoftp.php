@@ -4,7 +4,7 @@ Plugin Name: MiwoFTP
 Plugin URI: http://miwisoft.com
 Description: MiwoFTP is a smart, fast and lightweight file manager component. It operates from WordPress back-end so you don't have to use any FTP program anymore.
 Author: Miwisoft LLC
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://miwisoft.com
 Plugin URI: http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager
 */
@@ -14,7 +14,7 @@ defined('ABSPATH') or die('MIWI');
 define('MPATH_MIWOFTP_QX', plugin_dir_path(__FILE__).'admin/quixplorer');
 define('MURL_MIWOFTP', plugins_url('', __FILE__));
 
-add_action('init', 'check_init_action');
+add_action('admin_init', 'check_init_action');
 add_action('admin_menu', 'miwoftp_menu');
 
 function miwoftp_menu() {
@@ -46,18 +46,22 @@ function miwoftp_echo() {
     echo '</div>';
 }
 
-function check_init_action(){
-    if(empty($_GET['action']) or (isset($_GET['action']) and $_GET['action'] != 'download') ){
+function check_init_action() {
+    if (empty($_GET['action']) or (isset($_GET['action']) and $_GET['action'] != 'download') ){
         return;
     }
 
-    if(!isset($_GET['option']) or (isset($_GET['option']) and $_GET['option'] != 'com_miwoftp') ){
+    if (!isset($_GET['option']) or (isset($_GET['option']) and $_GET['option'] != 'com_miwoftp') ){
         return;
     }
 
-    if(!isset($_GET['item'])) {
+    if (!isset($_GET['item'])) {
         return;
     }
+	
+	if (!current_user_can('manage_options')) {
+		return;
+	}
 
     require MPATH_MIWOFTP_QX."/_include/init.php";
 
@@ -66,5 +70,6 @@ function check_init_action(){
    	ob_end_clean(); // get rid of cached unwanted output
    	download_item($GLOBALS["dir"], $GLOBALS["item"]);
    	ob_start(false); // prevent unwanted output
+	
    	exit;
 }
