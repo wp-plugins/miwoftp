@@ -12,20 +12,49 @@ defined('ABSPATH') or die('MIWI');
 
 require MPATH_MIWOFTP_QX."/_include/error.php";
 
-if(isset($_SERVER)) {
-	$GLOBALS['__GET']	=&$_GET;
-	$GLOBALS['__POST']	=&$_POST;
-	$GLOBALS['__SERVER']	=&$_SERVER;
-	$GLOBALS['__FILES']	=&$_FILES;
+if (isset($_SERVER)) {
+	$GLOBALS['__GET'] = &$_GET;
+	$GLOBALS['__POST'] = &$_POST;
+	$GLOBALS['__SERVER'] = &$_SERVER;
+	$GLOBALS['__FILES']	= &$_FILES;
 } elseif(isset($HTTP_SERVER_VARS)) {
-	$GLOBALS['__GET']	=&$HTTP_GET_VARS;
-	$GLOBALS['__POST']	=&$HTTP_POST_VARS;
-	$GLOBALS['__SERVER']	=&$HTTP_SERVER_VARS;
-	$GLOBALS['__FILES']	=&$HTTP_POST_FILES;
+	$GLOBALS['__GET'] = &$HTTP_GET_VARS;
+	$GLOBALS['__POST'] = &$HTTP_POST_VARS;
+	$GLOBALS['__SERVER'] = &$HTTP_SERVER_VARS;
+	$GLOBALS['__FILES']	= &$HTTP_POST_FILES;
 } else {
 	die("<B>ERROR: Your PHP version is too old</B><BR>".
 	"You need at least PHP 4.0.0 to run QuiXplorer; preferably PHP 4.3.1 or higher.");
 }
+
+function cleanVar($data) {
+	if (is_array($data)) {
+		foreach ($data as $key => $value) {
+			unset($data[$key]);
+		
+			$data[$key] = cleanVar($value);
+		}
+	}
+	else {
+		$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
+	}
+	
+	return $data;
+}
+
+foreach ($GLOBALS['__GET'] as $key => $value) {
+	$GLOBALS['__GET'][$key] = cleanVar($value);
+}
+foreach ($GLOBALS['__POST'] as $key => $value) {
+	$GLOBALS['__POST'][$key] = cleanVar($value);
+}
+foreach ($GLOBALS['__SERVER'] as $key => $value) {
+	$GLOBALS['__SERVER'][$key] = cleanVar($value);
+}
+foreach ($GLOBALS['__FILES'] as $key => $value) {
+	$GLOBALS['__FILES'][$key] = cleanVar($value);
+}
+
 //------------------------------------------------------------------------------
 // Get Action
 if(isset($GLOBALS['__GET']["action"])) $GLOBALS["action"]=$GLOBALS['__GET']["action"];

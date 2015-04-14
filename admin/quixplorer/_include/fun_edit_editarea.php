@@ -50,7 +50,7 @@ Comment:
 require_once(MPATH_MIWOFTP_QX."/_include/permissions.php");
 //------------------------------------------------------------------------------
 function savefile($file_name) {			// save edited file
-	$code = stripslashes($GLOBALS['__POST']["code"]);
+	$code = stripslashes(htmlspecialchars_decode($GLOBALS['__POST']["code"], ENT_COMPAT));
 	//$code = $GLOBALS['__POST']["code"];
 	$fp = @fopen($file_name, "w");
 	if($fp===false) show_error(basename($file_name).": ".$GLOBALS["error_msg"]["savefile"]);

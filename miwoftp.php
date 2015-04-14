@@ -4,7 +4,7 @@ Plugin Name: MiwoFTP
 Plugin URI: http://miwisoft.com
 Description: MiwoFTP is a smart, fast and lightweight file manager component. It operates from WordPress back-end so you don't have to use any FTP program anymore.
 Author: Miwisoft LLC
-Version: 1.0.5
+Version: 1.0.6
 Author URI: http://miwisoft.com
 Plugin URI: http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager
 */
@@ -22,6 +22,10 @@ function miwoftp_menu() {
 }
 
 function miwoftp_echo() {
+	if (!current_user_can('manage_options')) {
+		return;
+	}
+	
     echo '<div class="wrap">';
     echo '<h2>MiwoFTP</h2>';
 
@@ -42,7 +46,7 @@ function miwoftp_echo() {
 
     echo $output;
 
-    echo '<div style="margin: 10px; text-align: center;"><a style="text-decoration: none;" href="http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager" target="_blank">MiwoFTP | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';
+    echo '<div style="margin: 10px; text-align: center;"><a style="text-decoration: none;" href="http://miwisoft.com/wordpress-plugins/miwoftp-wordpress-file-manager" target="_blank">MiwoFTP | Copyright &copy; 2009-2015 Miwisoft LLC</a></div>';
     echo '</div>';
 }
 
